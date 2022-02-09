@@ -1,0 +1,37 @@
+version: "3.9"
+
+networks:
+  wp-back:
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    depends_on:
+     - db
+    environment:
+     WORDPRESS_DB_HOST: db:3306
+     WORDPRESS_DB_NAME: millionweddings
+     WORDPRESS_DB_PASSWORD: MillionWeddings2022
+     WORDPRESS_DB_USER: millionweddings
+    ports:
+     - 80:80
+    networks:
+     - wp-back
+    volumes:
+     - wordpress_data:/var/www/html
+     - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+  db:
+    image: mysql:latest
+    restart: always
+    networks:
+     - wp-back
+    environment:
+     MYSQL_USER: millionweddings
+     MYSQL_ROOT_PASSWORD: MillionWeddings2022
+     MYSQL_PASSWORD: MillionWeddings2022
+     MYSQL_DATABASE: millionweddings
+    volumes:
+     - db_data:/var/lib/mysql
+volumes:
+  db_data: {}
+  wordpress_data: {}
