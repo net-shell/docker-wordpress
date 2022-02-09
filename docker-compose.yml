@@ -10,9 +10,9 @@ services:
      - db
     environment:
      WORDPRESS_DB_HOST: db:3306
-     WORDPRESS_DB_NAME: millionweddings
-     WORDPRESS_DB_PASSWORD: MillionWeddings2022
-     WORDPRESS_DB_USER: millionweddings
+     WORDPRESS_DB_NAME: website
+     WORDPRESS_DB_PASSWORD: secret
+     WORDPRESS_DB_USER: website
     ports:
      - 80:80
     networks:
@@ -26,10 +26,10 @@ services:
     networks:
      - wp-back
     environment:
-     MYSQL_USER: millionweddings
-     MYSQL_ROOT_PASSWORD: MillionWeddings2022
-     MYSQL_PASSWORD: MillionWeddings2022
-     MYSQL_DATABASE: millionweddings
+     MYSQL_USER: website
+     MYSQL_ROOT_PASSWORD: secret
+     MYSQL_PASSWORD: secret
+     MYSQL_DATABASE: website
     volumes:
      - db_data:/var/lib/mysql
 volumes:
